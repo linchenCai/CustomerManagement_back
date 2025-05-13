@@ -1,17 +1,18 @@
 package com.example.demo.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 
- * @TableName user
+ * @TableName t_after_sales
  */
-@TableName(value ="user")
+@TableName(value ="t_after_sales")
 @Data
-public class User {
+public class AfterSales {
     /**
      * 
      */
@@ -21,21 +22,25 @@ public class User {
     /**
      * 
      */
-    private String username;
+    private Integer custId;
 
     /**
      * 
      */
-    private String email;
+    private String question;
 
     /**
      * 
      */
-    private String phone;
+    private String state;
 
     /**
      * 
      */
-    private String password;
+    private String record;
 
+    /**
+     * 
+     */
+    private Integer level;
 }
