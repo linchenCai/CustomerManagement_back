@@ -1,17 +1,18 @@
 package com.example.demo.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 
- * @TableName t_sell_jh
+ * @TableName t_menus
  */
-@TableName(value ="t_sell_jh")
+@TableName(value ="t_menus")
 @Data
-public class SellJh {
+public class Menus {
     /**
      * 
      */
@@ -21,25 +22,15 @@ public class SellJh {
     /**
      * 
      */
-    private Integer custid;
+    private String label;
 
     /**
      * 
      */
-    private Integer channelId;
+    private Integer component;
 
     /**
      * 
      */
-    private Double money;
-
-    /**
-     * 
-     */
-    private String nowStep;
-
-    /**
-     * 
-     */
-    private Integer empId;
+    private Integer pid;
 }
