@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,7 +38,45 @@ public class CustomerController {
     @GetMapping("/listCust")
     public Map<String, Object> queryCustList(
             @RequestParam(defaultValue = "1") Integer pageNum,
-            @RequestParam(defaultValue = "3") Integer pageSize
+            @RequestParam(defaultValue = "6") Integer pageSize
     ) {
         return customerService.queryCustListService(pageNum, pageSize);
-}}
+}
+    /*添加方法处理客户信息修改请求*/
+    @PostMapping("/updateCust")
+    public Map<String,Object> updateCustomer(@RequestBody Customer customer){
+        Map<String,Object> result=new HashMap<>();
+        result.put("code",400);
+        result.put("msg","操作失败.....");
+        try {
+            customerService.updateById(customer);
+            result.put("code",200);
+            result.put("msg","客户信息修改成功.....");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    /*处理客户信息删除的ajax请求*/
+    @GetMapping("/delCust")
+    public Map<String,Object> delCust(Integer id){
+        Map<String,Object> result=new HashMap<>();
+        result.put("code",400);
+        result.put("msg","操作失败.....");
+        try {
+            customerService.removeById(id);
+            result.put("code",200);
+            result.put("msg","客户信息修改成功.....");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    /*处理加载所有客户列表请求*/
+    @GetMapping("/listAllCust")
+    public List<Customer> listAllCust(){
+        return customerService.queryCustIdNameListService();
+    }
+
+}

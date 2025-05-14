@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.pojo.Customer;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,4 +13,6 @@ import java.util.Map;
 */
 public interface CustomerService extends IService<Customer> {
     public Map<String, Object> queryCustListService(Integer pageNum, Integer pageSize);
+    /*查询所有客户Id和姓名*/
+    public List<Customer> queryCustIdNameListService();
 }
