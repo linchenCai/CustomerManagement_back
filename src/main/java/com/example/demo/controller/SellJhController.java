@@ -1,14 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.pojo.Customer;
 import com.example.demo.pojo.SellJh;
-import com.example.demo.service.CustomerService;
 import com.example.demo.service.SellJhService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +17,7 @@ public class SellJhController {
 
     /* 处理客户信息添加请求 */
     @PostMapping("/saveSell")
-    public Map<String, Object> saveCustomer(@RequestBody SellJh selljh) {//因为是json，所以要加@RequestBody
+    public Map<String, Object> saveSelljh(@RequestBody SellJh selljh) {//因为是json，所以要加@RequestBody
         System.out.println(selljh);
         Map<String, Object> result = new HashMap<>();
         result.put("code", 400);
@@ -36,5 +31,13 @@ public class SellJhController {
         }
 
         return result;
+
+    }
+    /*处理销售过程分页查询请求*/
+    @GetMapping("/sellJhList")
+    public Map<String, Object> sellJhList(@RequestParam(defaultValue = "1") Integer pageNum,
+                                          @RequestParam(defaultValue = "3") Integer pageSize) {
+
+        return sellJhService.querySellJhListService(pageNum,pageSize);
     }
 }

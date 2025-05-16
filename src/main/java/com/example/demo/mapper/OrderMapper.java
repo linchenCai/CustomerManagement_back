@@ -1,7 +1,10 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dto.HisData;
 import com.example.demo.pojo.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author 24123
@@ -10,7 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.example.demo.pojo.Order
 */
 public interface OrderMapper extends BaseMapper<Order> {
-
+//查询统计每个用户历史消费总额
+    public List<HisData>queryCountHisDataMapper();
 }
 
 
