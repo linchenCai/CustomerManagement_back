@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TreeTestMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.pojo.TreeTest">
+            <id property="id" column="id" />
+            <result property="tname" column="tname" />
+            <result property="pid" column="pid" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,tname,pid
+    </sql>
+</mapper>
