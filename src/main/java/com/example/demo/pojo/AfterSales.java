@@ -37,10 +37,19 @@ public class AfterSales {
     /**
      * 
      */
-    private String record;
+    private String grade;
 
     /**
      * 
      */
     private Integer level;
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private String custName;
+    @TableField(exist = false)
+    private Integer pageNum=1;
+    @TableField(exist = false)
+    private Integer pageSize=3;
 }

@@ -40,4 +40,35 @@ public class SellJhController {
 
         return sellJhService.querySellJhListService(pageNum,pageSize);
     }
+    /*处理销售过程修改请求*/
+    @PostMapping("/updateSellJh")
+    public Map<String, Object> updateSellJh(@RequestBody SellJh sellJh) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 400);
+        result.put("msg", "操作失败...");
+        try {
+            sellJhService.updateById(sellJh);
+            result.put("code", 200);
+            result.put("msg", "更新客户销售过程数据成功...");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+/*处理客户销售信息删除请求*/
+    @GetMapping("/delSellJh")
+    public Map<String, Object> delSellJh(Integer id) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 400);
+        result.put("msg", "操作失败...");
+        try {
+            sellJhService.removeById(id);
+            result.put("code", 200);
+            result.put("msg", "删除客户销售过程数据成功...");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
 }

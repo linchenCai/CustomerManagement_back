@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -13,7 +17,7 @@ import lombok.Data;
  */
 @TableName(value ="t_order")
 @Data
-public class Order {
+public class Order  implements Serializable {
     /**
      * 
      */
@@ -33,6 +37,7 @@ public class Order {
     /**
      * 
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date orderDate;
 
     /**
@@ -49,4 +54,15 @@ public class Order {
      * 
      */
     private Double payMoney;
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+    @TableField(exist = false)
+    private Integer num;
+    private String custName;
+    @TableField(exist = false)
+    private String itemName;
+    @TableField(exist = false)
+    private Integer pageNum=1;
+    @TableField(exist = false)
+    private Integer pageSize=3;
 }

@@ -15,6 +15,10 @@ import java.util.List;
 public interface OrderMapper extends BaseMapper<Order> {
 //查询统计每个用户历史消费总额
     public List<HisData>queryCountHisDataMapper();
+    /*实现订单数据动态多条件分页查询
+     * order:封装动态where条件
+     * */
+    public List<Order> queryOrderListMapper(Order order);
 }
 
 
