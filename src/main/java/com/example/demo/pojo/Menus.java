@@ -33,4 +33,10 @@ public class Menus {
      * 
      */
     private Integer pid;
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private Integer maxv;
 }

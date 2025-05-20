@@ -1,13 +1,17 @@
 package com.example.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.assist.ISqlRunner;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.pojo.Menus;
 import com.example.demo.service.MenusService;
 import com.example.demo.mapper.MenusMapper;
 import com.example.demo.vo.MenusVo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +26,8 @@ public class MenusServiceImpl extends ServiceImpl<MenusMapper, Menus>
         implements MenusService {
 
     // MenusMapper 可以通过 baseMapper 字段从 ServiceImpl 继承，或者显式注入
-    // @Autowired
-    // private MenusMapper menusMapper; // 如果不使用 baseMapper，则需要这个
+     @Autowired
+    private MenusMapper menusMapper; // 如果不使用 baseMapper，则需要这个
 
     @Override
     public List<MenusVo> queryMenuListService() {
@@ -39,6 +43,16 @@ public class MenusServiceImpl extends ServiceImpl<MenusMapper, Menus>
         return buildSubMenus(allMenus, 0);
     }
 
+    @Override
+    public void saveMenusService(Menus menus) {
+        QueryWrapper<Menus> wrapper = new QueryWrapper<>();
+        wrapper.select("max(component) maxv");
+        //获得component的最大值
+        Menus ms = menusMapper.selectOne(wrapper);
+        //component组件属性的值，是数据库最大值加1
+        menus.setComponent(ms.getMaxv()+1);
+        menusMapper.insert(menus);
+    }
     /**
      * 递归构建子菜单树
      *
