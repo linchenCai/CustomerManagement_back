@@ -45,4 +45,37 @@ public class MenusController {
         }
         return result;
     }
+    /*处理菜单节点删除的请求*/
+    @CrossOrigin
+    @DeleteMapping("/deleteMenus/{id}")
+    public Map<String,Object> deleteMenus(@PathVariable Integer id){
+        Map<String,Object> result = new HashMap<>();
+        result.put("code",400);
+        result.put("msg","菜单信息删除失败.....");
+        try {
+            menusService.removeById(id);
+            result.put("code",200);
+            result.put("msg","菜单信息删除成功.....");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    /*处理菜单节点更新的请求*/
+    @CrossOrigin
+    @PostMapping("/updateMenus")
+    public Map<String,Object> updateMenus(@RequestBody Menus menus){
+        Map<String,Object> result=new HashMap<>();
+        result.put("code",400);
+        result.put("msg","操作失败......");
+        try{
+            menusService.updateById(menus);
+            result.put("code",200);
+            result.put("msg","更新菜单节点成功.......");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
 }
