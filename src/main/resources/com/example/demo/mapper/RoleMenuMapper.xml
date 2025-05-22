@@ -13,4 +13,6 @@
     <sql id="Base_Column_List">
         id,rid,mid
     </sql>
+    <!--定义sql-->
+
 </mapper>

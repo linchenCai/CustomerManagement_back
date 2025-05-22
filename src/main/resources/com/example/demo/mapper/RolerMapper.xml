@@ -13,4 +13,11 @@
     <sql id="Base_Column_List">
         id,rname,rdesc
     </sql>
+    <!--定义sql-->
+    <select id="queryRoleMidsMapper" resultType="java.lang.Integer"
+    parameterType="java.lang.Integer">
+        select t_role_menu.mid from  t_menus inner join t_role_menu
+        on t_menus.id=t_role_menu.mid
+        where rid=#{rid} and t_menus.pid!=0
+    </select>
 </mapper>
