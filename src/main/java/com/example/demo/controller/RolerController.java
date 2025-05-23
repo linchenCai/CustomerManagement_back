@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.pojo.RoleMenu;
 import com.example.demo.pojo.Roler;
@@ -60,7 +61,13 @@ public class RolerController {
         result.put("code",400);
         result.put("msg","操作失败.......");
         try{
+            //删除角色信息
             rolerService.removeById(id);
+            //删除角色和菜单的关联关系
+            QueryWrapper<RoleMenu> wrapper = new QueryWrapper<>();
+            wrapper.eq("rid",id);
+            roleMenuService.remove(wrapper);
+
             result.put("code",200);
             result.put("msg","删除角色信息成功......");
         }catch (Exception ex){
@@ -81,10 +88,7 @@ public class RolerController {
         try{
             //数组中获得第一个元素，角色id
             Integer rid = ids[0];
-            //先删除该角色原有的所有菜单权限
-            QueryWrapper<RoleMenu> wrapper = new QueryWrapper<>();
-            wrapper.eq("rid", rid);
-            roleMenuService.remove(wrapper);
+
 
             List<RoleMenu> list=new ArrayList<>();
             //for循环遍历
@@ -96,6 +100,11 @@ public class RolerController {
                 //将roleMenu对象添加到list集合中
                 list.add(roleMenu);
             }
+            //先删除该角色原有的所有菜单权限
+            QueryWrapper<RoleMenu> wrapper = new QueryWrapper<>();
+            wrapper.eq("rid", rid);
+            roleMenuService.remove(wrapper);
+            //批量添加角色和菜单的中间关系
             roleMenuService.saveBatch(list);//批量添加
             result.put("code",200);
             result.put("msg","角色授权成功......");
@@ -113,5 +122,13 @@ public class RolerController {
         List<Integer>result = roleMenuService.listObjs(wrapper);
         return result;*/
 return roleMenuService.queryRoleMidsListService(rid);
+    }
+    /*加载所有角色信息*/
+    @GetMapping("/loadAllRoles")
+    public List<Roler> loadAllRoles(){
+        QueryWrapper<Roler> wrapper=new QueryWrapper<>();
+        wrapper.select("id","rname");
+        List<Roler> list = rolerService.list(wrapper);
+        return list;
     }
 }
