@@ -23,7 +23,47 @@ public class Item {
     /**
      * 
      */
+    private String itemNum;
+
+    /**
+     * 
+     */
     private String itemName;
+
+    /**
+     * 
+     */
+    private Integer typeId;
+
+    /**
+     * 
+     */
+    private Integer store;
+
+    /**
+     * 
+     */
+    private Integer brandId;
+
+    /**
+     * 
+     */
+    private Integer storeId;
+
+    /**
+     * 
+     */
+    private Integer supplyId;
+
+    /**
+     * 
+     */
+    private Integer placeId;
+
+    /**
+     * 
+     */
+    private Integer unitId;
 
     /**
      * 
@@ -33,7 +73,27 @@ public class Item {
     /**
      * 
      */
+    private Double sellPrice;
+
+    /**
+     * 
+     */
+    private Double vipPrice;
+
+    /**
+     * 
+     */
+    private String itemDesc;
+
+    /**
+     * 
+     */
     private Date itemDate;
+
+    /**
+     * 
+     */
+    private Date endDate;
 
     /**
      * 
@@ -48,5 +108,15 @@ public class Item {
     /**
      * 
      */
-    private Integer store;
+    private Integer statue;
+
+    /**
+     * 
+     */
+    private String imgs;
+
+    /**
+     * 
+     */
+    private String createBy;
 }
