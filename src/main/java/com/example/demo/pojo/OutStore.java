@@ -4,28 +4,24 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
- * 入库单
- * @TableName t_in_store
+ * 出库单
+ * @TableName t_out_store
  */
-@TableName(value ="t_in_store")
+@TableName(value ="t_out_store")
 @Data
-public class InStore {
+public class OutStore {
     /**
      * 
      */
     @TableId(type = IdType.AUTO)
-    private Integer insId;
-
-    /**
-     * 
-     */
-    private Integer storeId;
+    private Integer outsId;
 
     /**
      * 
@@ -35,7 +31,22 @@ public class InStore {
     /**
      * 
      */
-    private Integer inNum;
+    private Integer storeId;
+
+    /**
+     * 
+     */
+    private Integer tallyId;
+
+    /**
+     * 
+     */
+    private BigDecimal outPrice;
+
+    /**
+     * 
+     */
+    private Integer outNum;
 
     /**
      * 
@@ -51,11 +62,11 @@ public class InStore {
     /**
      * 0 否 1 是
      */
-    private String isIn;
+    private String isOut;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     @TableField(exist = false)
-    private String storeName;
-    @TableField(exist = false)
     private String itemName;
+    @TableField(exist = false)
+    private String storeName;
 }
