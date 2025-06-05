@@ -1,7 +1,10 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dto.CountResult;
 import com.example.demo.pojo.Customer;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author 24123
@@ -10,7 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.example.demo.pojo.Customer
 */
 public interface CustomerMapper extends BaseMapper<Customer> {
-
+    /*实现客户地区分布统计*/
+    public List<CountResult> countCustomerAreaMapper();
 }
 
 

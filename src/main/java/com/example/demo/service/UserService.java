@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.CountResult;
 import com.example.demo.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,5 +22,9 @@ public interface UserService extends IService<User> {
     public void updateUserRolerService(User user);
     /*实现用户信息的删除*/
     public void deleteUserRoleService(Integer id);
+    /*实现员工按照年龄段分布统计*/
+    public List<CountResult> countEmployeeAgeService();
+    /*实现员工学历分布统计*/
+    public List<CountResult> countEmployeeEduService();
 }
 

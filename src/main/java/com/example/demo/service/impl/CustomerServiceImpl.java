@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.demo.dto.CountResult;
 import com.example.demo.dto.HisData;
 import com.example.demo.mapper.OrderMapper;
 import com.example.demo.pojo.Customer;
@@ -61,6 +62,10 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         wrapper.select("id","cust_name");
         List<Customer> customerList = customerMapper.selectList(wrapper);
         return customerList;
+    }
+    @Override
+    public List<CountResult> countCustService() {
+        return customerMapper.countCustomerAreaMapper();
     }
 }
 

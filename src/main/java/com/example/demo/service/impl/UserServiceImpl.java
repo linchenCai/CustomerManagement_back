@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.demo.dto.CountResult;
 import com.example.demo.mapper.UserRoleMapper;
 import com.example.demo.pojo.User;
 import com.example.demo.pojo.UserRole;
@@ -90,6 +91,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         del.eq("uid",id);
         userRoleMapper.delete(del);
 
+    }
+
+    @Override
+    public List<CountResult> countEmployeeAgeService() {
+       return userMapper.countEmployeeAgeMapper();
+    }
+
+    @Override
+    public List<CountResult> countEmployeeEduService() {
+        return userMapper.countEmployeeEduMapper();
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @CrossOrigin
 public class TestController {
 
-    /*处理年度12个月销售数据统计的请求*/
+/*    *//*处理年度12个月销售数据统计的请求*//*
     @GetMapping("/countSell")
     public Map<String,Object> countSell(){
 
@@ -33,5 +33,5 @@ public class TestController {
         result.put("xdata",month);
         result.put("ydata",sdata);
         return result;
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.HisData;
+import com.example.demo.dto.SellResult;
 import com.example.demo.pojo.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -19,6 +20,10 @@ public interface OrderMapper extends BaseMapper<Order> {
      * order:封装动态where条件
      * */
     public List<Order> queryOrderListMapper(Order order);
+    /*统计查询销售数据的年份*/
+    public List<Integer> querySellYearMapper();
+    /*统计查询某个年份12个月销售额*/
+    public List<SellResult> countSellMonthMapper(String year);
 }
 
 
