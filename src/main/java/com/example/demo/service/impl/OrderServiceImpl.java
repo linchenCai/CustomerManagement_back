@@ -80,6 +80,34 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         return result;
     }
 
+    @Override
+    public Map<String, Object> querySellNumService(String year) {
+        //查询数据库
+        List<SellResult> sellResults = orderMapper.countSellNumMapper(year);
+        //创建List集合封装每年12个月
+        List<String> mths=new ArrayList<>();
+        //创建List集合封装每个12个月的销售数量
+        List<Double> nums=new ArrayList<>();
+
+        //初始化集合
+        for(int x=1;x<=12;x++){
+            mths.add(x+"月");
+            nums.add((double) 0);
+        }
+
+        //根据对应月份的具体的销售数量，覆盖默认数量0
+        for (SellResult sr:sellResults){
+            if(sr!=null){
+                nums.set(sr.getMth()-1,sr.getMny());
+            }
+        }
+        //将响应数据放入Map集合
+        Map<String,Object> result=new HashMap<>();
+        result.put("xdata",mths);
+        result.put("ydata",nums);
+        return result;
+    }
+
 
 }
 

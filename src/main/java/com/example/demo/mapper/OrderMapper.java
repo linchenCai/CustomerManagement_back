@@ -24,6 +24,8 @@ public interface OrderMapper extends BaseMapper<Order> {
     public List<Integer> querySellYearMapper();
     /*统计查询某个年份12个月销售额*/
     public List<SellResult> countSellMonthMapper(String year);
+    /*实现年12个月销售商品数量的统计*/
+    public List<SellResult> countSellNumMapper(String year);
 }
 
 

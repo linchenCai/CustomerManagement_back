@@ -37,4 +37,9 @@ public class OrderController {
     public Map<String,Object> countYearSell(String year){
         return orderService.queryYearMonthService(year);
     }
+    /*处理年12个月，每个月销售数量统计的请求*/
+    @GetMapping("/countNum")
+    public Map<String,Object> countNum(String year){
+        return orderService.querySellNumService(year);
+    }
 }

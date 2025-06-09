@@ -56,5 +56,11 @@
         group by mth
         order by mth
     </select>
-
+    <!--实现某年12个月，每个月销售量的统计-->
+    <select id="countSellNumMapper" resultType="com.example.demo.dto.SellResult">
+        select month(order_date) mth ,sum(num) mny  from t_order
+        where year(order_date)=#{year}
+        group by mth
+        order by mth
+    </select>
 </mapper>
