@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
-@CrossOrigin
+
 public class TestController {
 
 /*    *//*处理年度12个月销售数据统计的请求*//*

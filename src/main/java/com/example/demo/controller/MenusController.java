@@ -17,20 +17,20 @@ public class MenusController {
     private MenusService menusService;
 
     /*定义方法处理，加载左侧菜单节点的请求*/
-    @CrossOrigin
+
     @RequestMapping("/listMenus")
     public List<MenusVo> listMenus(){
         return menusService.queryMenuListService();
     }
     /*定义方法处理，加载左侧菜单节点的对应的组件下标的请求*/
-    @CrossOrigin
+
     @RequestMapping("/compIndex")
     public Integer compIndex(Integer id){
         Menus menus = menusService.getById(id);
         return menus.getComponent();
     }
     /*处理菜单节点信息的添加请求*/
-    @CrossOrigin
+
     @PostMapping("/saveMenus")
     public Map<String,Object> saveMenus(@RequestBody Menus menus){
         Map<String,Object> result = new HashMap<>();
@@ -46,7 +46,7 @@ public class MenusController {
         return result;
     }
     /*处理菜单节点删除的请求*/
-    @CrossOrigin
+    
     @DeleteMapping("/deleteMenus/{id}")
     public Map<String,Object> deleteMenus(@PathVariable Integer id){
         Map<String,Object> result = new HashMap<>();
@@ -62,7 +62,7 @@ public class MenusController {
         return result;
     }
     /*处理菜单节点更新的请求*/
-    @CrossOrigin
+    
     @PostMapping("/updateMenus")
     public Map<String,Object> updateMenus(@RequestBody Menus menus){
         Map<String,Object> result=new HashMap<>();

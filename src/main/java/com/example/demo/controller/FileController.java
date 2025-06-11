@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin
+
 public class FileController {
 
     private static final String UPLOAD_DIR = "uploads/imgs/";

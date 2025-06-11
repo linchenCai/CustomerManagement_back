@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-@CrossOrigin
+
 @RestController
 public class ReplayController {
     @Autowired

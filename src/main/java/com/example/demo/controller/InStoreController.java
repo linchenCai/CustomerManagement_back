@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+
 public class InStoreController {
     @Autowired
     private InStoreService inStoreService;

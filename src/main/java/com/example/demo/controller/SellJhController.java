@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+
 public class SellJhController {
     //注入Service
     @Autowired

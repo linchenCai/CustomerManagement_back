@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+
 public class ItemController {
 
     /*处理产生商品编码的请求*/
