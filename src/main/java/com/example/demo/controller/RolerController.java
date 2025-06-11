@@ -7,6 +7,8 @@ import com.example.demo.pojo.Roler;
 import com.example.demo.service.RoleMenuService;
 import com.example.demo.service.RolerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -26,6 +28,7 @@ public class RolerController {
         return rolerService.queryRolePageListService(pageNum,pageSize);
     }
     @PostMapping("/updateRoler")
+    @CacheEvict(cacheNames = "roler_cache", allEntries = true)
     public Map<String,Object> updateRoler(@RequestBody Roler roler){
         Map<String, Object> result= new HashMap<>();
         result.put("code",400);
@@ -41,6 +44,7 @@ public class RolerController {
     }
     /*处理角色信息添加的请求*/
     @PostMapping("/saveRoler")
+    @CacheEvict(cacheNames = "roler_cache", allEntries = true)
     public Map<String,Object> saveRoler(@RequestBody Roler roler){
      Map<String,Object> result = new HashMap<>();
         result.put("code",400);
@@ -56,6 +60,7 @@ public class RolerController {
     }
     /*处理角色信息删除的请求*/
     @GetMapping("/deleteRoler/{id}")
+    @CacheEvict(cacheNames = "roler_cache", allEntries = true)
     public Map<String,Object> deleteRoler(@PathVariable Integer id){
         Map<String,Object> result = new HashMap<>();
         result.put("code",400);
@@ -123,12 +128,14 @@ public class RolerController {
         return result;*/
 return roleMenuService.queryRoleMidsListService(rid);
     }
-    /*加载所有角色信息*/
-    @GetMapping("/loadAllRoles")
-    public List<Roler> loadAllRoles(){
-        QueryWrapper<Roler> wrapper=new QueryWrapper<>();
-        wrapper.select("id","rname");
-        List<Roler> list = rolerService.list(wrapper);
-        return list;
-    }
+/*加载所有角色信息，并缓存到 Redis*/
+@GetMapping("/loadAllRoles")
+@Cacheable(cacheNames = "roler_cache", key = "#root.methodName") // 缓存名为 roler_cache，key 为方法名
+public List<Roler> loadAllRoles() {
+    QueryWrapper<Roler> wrapper = new QueryWrapper<>();
+    wrapper.select("id", "rname");
+    List<Roler> list = rolerService.list(wrapper);
+    return list;
+}
+
 }

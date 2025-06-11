@@ -17,7 +17,10 @@ import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 该类是一个RESTful控制器，用于处理与用户相关的HTTP请求
+ * 通过使用@RestController注解，Spring会自动将该类托管为一个Bean，并处理返回值为HTTP响应体的情况
+ */
 @RestController
 
 public class BuyListController {

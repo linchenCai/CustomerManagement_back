@@ -5,6 +5,7 @@ import com.example.demo.pojo.Brand;
 import com.example.demo.pojo.Unit;
 import com.example.demo.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import java.util.List;
 public class BrandController {
     @Autowired
     private BrandService brandService;
+    @Cacheable(cacheNames = "brand_cache",key="#root.methodName")
     @GetMapping("/brandList")
     public List<Brand> queryBrandList(){
         QueryWrapper<Brand> wrapper=new QueryWrapper<>();

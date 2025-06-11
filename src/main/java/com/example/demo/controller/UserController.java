@@ -2,9 +2,11 @@ package com.example.demo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.dto.CountResult;
+import com.example.demo.dto.UserVo;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserRoleService;
 import com.example.demo.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,4 +93,41 @@ public class UserController {
     public List<CountResult> countEmpEdu(){
         return userService.countEmployeeEduService();
     }
+/*处理用户登录请求*/
+@PostMapping("/userLogin")
+public Map<String,Object> userLogin(@RequestBody UserVo user, HttpSession session){
+    //初始化返回结果map
+    Map<String,Object> result=new HashMap<>();
+    //默认返回失败的结果
+    result.put("code",400);
+    result.put("msg","操作失败......");
+    try{
+        //根据用户名查询用户信息
+        QueryWrapper<User> wrapper=new QueryWrapper<>();
+        wrapper.eq("uname",user.getUname());
+        List<User> list = userService.list(wrapper);
+        //判断查询结果是否唯一
+        if(list!=null && list.size()==1){
+            //获得数据库查询到的用户对象
+            User dbUser = list.get(0);
+
+            //验证密码是否正确
+            if(dbUser.getUpwd().equals(user.getUpwd())){
+                //将当前登录用户保存到session会话中
+                session.setAttribute("online",dbUser);
+                //更新返回结果为成功
+                result.put("code",200);
+                result.put("msg","登录成功......");
+            }
+        }
+
+    }
+    //异常处理
+    catch(Exception ex){
+        ex.printStackTrace();
+    }
+    //返回处理结果
+    return result;
+}
+
 }
