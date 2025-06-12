@@ -46,4 +46,10 @@
     <select id="countEmployeeEduMapper" resultType="com.example.demo.dto.CountResult">
         select edu name,count(id) value from t_user group by edu
     </select>
+    <select id="queryUserMenusMapper" resultType="com.example.demo.pojo.Menus">
+        select distinct menus.* from t_menus menus
+                                         inner join t_role_menu rm on menus.id=rm.mid
+                                         inner join t_user_role ur on rm.rid=ur.rid
+        where ur.uid=#{uid}
+    </select>
 </mapper>

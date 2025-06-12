@@ -6,6 +6,7 @@ import com.example.demo.dto.UserVo;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserRoleService;
 import com.example.demo.service.UserService;
+import com.example.demo.vo.MenusVo;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -128,6 +129,20 @@ public Map<String,Object> userLogin(@RequestBody UserVo user, HttpSession sessio
     }
     //返回处理结果
     return result;
+}
+/**
+ * 处理加载当前登录用户菜单的请求
+ *
+ * @param session HTTP会话，用于获取当前登录用户信息
+ * @return 返回当前登录用户的菜单列表
+ */
+@GetMapping("/queryUserMenus")
+public List<MenusVo> queryUserMenus(HttpSession session){
+    //获得系统当前登录用户
+    User user= (User) session.getAttribute("online");
+
+    //调用服务层方法，查询并返回当前登录用户的菜单列表
+    return userService.queryUserMenusListService(user.getId());
 }
 
 }

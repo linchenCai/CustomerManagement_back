@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.CountResult;
+import com.example.demo.pojo.Menus;
 import com.example.demo.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.demo.vo.MenusVo;
 
 import java.util.List;
 import java.util.Map;
@@ -26,5 +28,7 @@ public interface UserService extends IService<User> {
     public List<CountResult> countEmployeeAgeService();
     /*实现员工学历分布统计*/
     public List<CountResult> countEmployeeEduService();
+    /*加载左侧导航菜单，根据当前用户加载*/
+    public List<MenusVo> queryUserMenusListService(Integer uid);
 }
 
